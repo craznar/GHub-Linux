@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Linux Logitech Control versioned JSON output envelope",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "error": {
+      "type": "object",
+      "required": ["exit_code", "message"],
+      "properties": {"exit_code": {"type": "integer", "minimum": 2, "maximum": 6}, "message": {"type": "string"}},
+      "additionalProperties": false
+    }
+  }
+}

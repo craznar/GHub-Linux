@@ -1,0 +1,616 @@
+{
+  "$defs": {
+    "Action": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "pass_through",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "disabled",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "outputs": {
+              "items": {
+                "$ref": "#/$defs/Output"
+              },
+              "type": "array"
+            },
+            "type": {
+              "const": "hold",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "outputs"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "hold_ms": {
+              "format": "uint64",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "outputs": {
+              "items": {
+                "$ref": "#/$defs/Output"
+              },
+              "type": "array"
+            },
+            "type": {
+              "const": "tap",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "outputs",
+            "hold_ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "horizontal": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "type": {
+              "const": "scroll",
+              "type": "string"
+            },
+            "vertical": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "type",
+            "horizontal",
+            "vertical"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "mode": {
+              "$ref": "#/$defs/Execution"
+            },
+            "retrigger": {
+              "$ref": "#/$defs/Retrigger"
+            },
+            "type": {
+              "const": "macro",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "mode",
+            "retrigger"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "layer_hold",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "layer_toggle",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "bank": {
+              "format": "uint8",
+              "maximum": 255,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": {
+              "const": "bank",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "bank"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "type": {
+              "const": "profile",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "bank": {
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "control": {
+          "description": "Semantic identity, e.g. g815.key.29, g815.g1, g502.back.",
+          "type": "string"
+        },
+        "impulse": {
+          "type": "boolean"
+        },
+        "secondary": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "control",
+        "secondary",
+        "impulse",
+        "action"
+      ],
+      "type": "object"
+    },
+    "DeviceSelector": {
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "$ref": "#/$defs/Model"
+        },
+        "serial": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usb_port": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "model"
+      ],
+      "type": "object"
+    },
+    "Execution": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "once",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": {
+              "const": "repeat",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "count"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "while_held",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "toggle",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Macro": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "interval_ms": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "$ref": "#/$defs/Operation"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "interval_ms",
+        "operations"
+      ],
+      "type": "object"
+    },
+    "Model": {
+      "enum": [
+        "g502_hero",
+        "g815"
+      ],
+      "type": "string"
+    },
+    "Operation": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "$ref": "#/$defs/Output"
+            },
+            "type": {
+              "const": "down",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "output"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "$ref": "#/$defs/Output"
+            },
+            "type": {
+              "const": "up",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "output"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "hold_ms": {
+              "format": "uint64",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "outputs": {
+              "items": {
+                "$ref": "#/$defs/Output"
+              },
+              "type": "array"
+            },
+            "type": {
+              "const": "tap",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "outputs",
+            "hold_ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "ms": {
+              "format": "uint64",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": {
+              "const": "wait",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "horizontal": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "type": {
+              "const": "scroll",
+              "type": "string"
+            },
+            "vertical": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "type",
+            "horizontal",
+            "vertical"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "body": {
+              "items": {
+                "$ref": "#/$defs/Operation"
+              },
+              "type": "array"
+            },
+            "count": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": {
+              "const": "repeat",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "count",
+            "body"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Output": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "format": "uint16",
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "kind": {
+              "const": "key",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "code"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "format": "uint16",
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "kind": {
+              "const": "button",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "code"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Profile": {
+      "additionalProperties": false,
+      "properties": {
+        "bindings": {
+          "items": {
+            "$ref": "#/$defs/Binding"
+          },
+          "type": "array"
+        },
+        "default_bank": {
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "default_bank",
+        "bindings"
+      ],
+      "type": "object"
+    },
+    "Retrigger": {
+      "enum": [
+        "ignore",
+        "restart"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "devices": {
+      "items": {
+        "$ref": "#/$defs/DeviceSelector"
+      },
+      "type": "array"
+    },
+    "login_activation": {
+      "type": "boolean"
+    },
+    "macros": {
+      "items": {
+        "$ref": "#/$defs/Macro"
+      },
+      "type": "array"
+    },
+    "profiles": {
+      "items": {
+        "$ref": "#/$defs/Profile"
+      },
+      "type": "array"
+    },
+    "revision": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "selected_profile": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "revision",
+    "login_activation",
+    "devices",
+    "profiles",
+    "macros",
+    "selected_profile"
+  ],
+  "title": "Config",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+.TH LLC 1 "15 October 2026" "Linux Logitech Control 0.1.0"
+.SH NAME
+llc \- Linux Logitech Control engineering CLI
+.SH SYNOPSIS
+.B llc
+.I command
+.RI [ arguments ]
+.SH DESCRIPTION
+Validates and stores profiles, inventories the wired G502 HERO and G815, and queries the passive system D-Bus backend.
+Hardware gate G0 is unverified. This build cannot enable remapping, macros, recording or hardware writes on physical devices.
+.SH COMMANDS
+Run
+.B llc --help
+for the complete command list. The probe is read-only. Configuration export omits serials and USB-port identity. Export refuses to overwrite an existing file.
+.SH FILES
+$XDG_CONFIG_HOME/linux-logitech-control/config.json or $HOME/.config/linux-logitech-control/config.json.
+.SH EXIT STATUS
+0 success; 2 invalid input; 3 authorization denied; 4 service unavailable; 5 unavailable or unverified device operation; 6 failure or conflict.
+.SH SEE ALSO
+systemctl(1), journalctl(1)

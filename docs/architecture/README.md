@@ -1,17 +1,7 @@
-# Architecture and decisions
+# Architecture
 
-Specification section 4 defines the architecture. Planned crate paths:
+The workspace follows specification section 4: llc-core (configuration, compiler, ownership/scheduler, persistence), llc-protocol (read-only USB/sysfs inventory and bounded HID++ framing), llc-input (physical safety state and explicit read-only evdev capture), llc-service (passive system D-Bus backend), llc-cli and llc-session-agent.
 
-| Path | Responsibility |
-|---|---|
-| `crates/llc-core/` | Configuration, validation, compilation and state machines |
-| `crates/llc-protocol/` | HID++ transport, adapters and capability translation |
-| `crates/llc-input/` | evdev/uinput, physical state, forwarding and recovery |
-| `crates/llc-service/` | Authorization, lifecycle, scheduling and D-Bus |
-| `crates/llc-session-agent/` | Ordinary-user saved configuration and login activation |
-| `crates/llc-gui/` | Rust Qt integration and view models |
-| `crates/llc-cli/` | Service client, offline validation and hardware probe |
+llc-gui and qml remain reserved paths. The specification requires actual hardware evidence before GUI implementation. It has not been replaced by simulated qualification.
 
-These are reserved source paths, not implemented Cargo crates. `qml/` is reserved for the GUI.
-
-Record decisions as numbered Markdown ADRs with context, status, decision, consequences and verification evidence. Initial decisions must cover the Rust/Qt bridge and versions, privilege boundary, device modes, routing and repeat strategy. No implementation ADR has been accepted yet.
+See [ADR 0001](0001-engineering-boundary.md) for toolchain, privilege boundary, lifecycle and deferred routing decisions.

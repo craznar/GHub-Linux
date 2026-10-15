@@ -1,5 +1,3 @@
 # llc-input
 
-Planned responsibility: evdev/uinput routing, physical-state tracking, output ownership and recovery.
-
-Reserved source path; no Cargo crate is implemented yet. See [architecture](../../docs/architecture/README.md) and specification section 4.
+Physical emergency/resynchronization state primitives and explicit bounded read-only evdev capture with opened-device identity checks. No grabs, forwarding, virtual output or live emergency-bypass route is enabled.

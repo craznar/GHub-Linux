@@ -1,5 +1,3 @@
 # llc-session-agent
 
-Planned responsibility: Ordinary-user saved configuration and authorized opt-in login activation.
-
-Reserved source path; no Cargo crate is implemented yet. See [architecture](../../docs/architecture/README.md) and specification section 4.
+Ordinary-user session process. Supplies validated saved JSON to the backend and reacquires session authorization after backend restart/unlock. Login management is opt-in, default off; G0 restrictions still apply. No Qt or visible window is required.

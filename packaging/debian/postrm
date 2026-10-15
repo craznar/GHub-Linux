@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload
+    systemctl reload dbus || true
+fi
+# Never delete user configurations or home-directory contents.

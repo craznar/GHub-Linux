@@ -1,5 +1,3 @@
 # llc-core
 
-Planned responsibility: Typed configuration, validation, profile compilation, macro semantics and state machines.
-
-Reserved source path; no Cargo crate is implemented yet. See [architecture](../../docs/architecture/README.md) and specification section 4.
+Implemented platform-neutral typed configuration/validation, macro compilation, shared output ownership, scheduler, profile/layer/bank state and atomic revisioned persistence. Tests use simulated events. No physical input/output dependency.

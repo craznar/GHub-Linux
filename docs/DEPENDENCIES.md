@@ -1,7 +1,9 @@
 # Dependencies and licensing
 
-No application dependencies have been selected, downloaded or incorporated. Rust and Qt 6/QML are baseline technology requirements; the bridge and versions remain undecided.
+Rust 1.90.0 is pinned in rust-toolchain.toml. Cargo.lock locks registry dependencies. Primary libraries: serde/serde_json for typed JSON, schemars for schema generation, uuid for stable IDs, fs2 for configuration locks, libc for bounded read-only Linux capture, zbus for system D-Bus and thiserror for core errors.
 
-Record each selected dependency's version/revision, purpose, source, license, attribution and distribution obligations. Pin the Rust toolchain and commit the Cargo lockfile with the initial workspace. Record Ubuntu runtime and build packages after checking them on the target.
+The native runtime uses distribution glibc/libgcc, D-Bus, systemd/logind and sysfs. No third-party Logitech code, firmware or assets are incorporated. Protocol references remain investigation evidence only.
 
-The application license remains an owner decision before distribution. The upstream links in specification section 22 are investigation references, not bundled dependencies or verified device support.
+`scripts/third-party-notices.py` reads locked Cargo metadata and collects registry license/copyright/notice files. It fails if a selected dependency has no license text. Build output goes under target/third-party (or CARGO_TARGET_DIR); installers/packages include it in /usr/share/doc/linux-logitech-control/third-party.
+
+Qt integration remains unselected until G0. Candidate documentation: https://kdab.github.io/cxx-qt/book/ . No Qt bridge dependency or GUI code is included in this build. The owner must select the application license before a release; no application open-source grant is implied by dependency licenses.

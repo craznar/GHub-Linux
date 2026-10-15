@@ -1,0 +1,32 @@
+[Unit]
+Description=Linux Logitech Control passive device backend
+After=dbus.service systemd-logind.service
+Requires=dbus.service
+
+[Service]
+Type=dbus
+BusName=au.craznar.LinuxLogitechControl1
+User=linux-logitech-control
+Group=linux-logitech-control
+ExecStart=/usr/libexec/llc-service
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=2
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+CapabilityBoundingSet=
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

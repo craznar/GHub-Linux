@@ -1,6 +1,6 @@
 # Acceptance register
 
-Recorded 15 October 2026. No application or hardware tests have run. Setup host: Windows. Native Ubuntu release, kernel, GNOME, Qt, firmware and keyboard layout: not inspected.
+Recorded 15 October 2026. Automated engineering tests and WSL package lifecycle checks have run; see TESTING.md. Every physical acceptance case below remains untested. Build hosts: Ubuntu 24.04.4 WSL and native Linux Mint 22.3. Ubuntu 26.04 GNOME/Wayland, device firmware and keyboard layout remain unqualified.
 
 Hardware gate G0: OPEN, with no physical observations. Every required input control still needs an evidenced route. See specification sections 3.2 and 17 for the normative criteria.
 

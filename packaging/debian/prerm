@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+if [ -d /run/systemd/system ]; then
+    case "$1" in remove|deconfigure) systemctl disable --now linux-logitech-control.service || true;; upgrade) systemctl stop linux-logitech-control.service || true;; esac
+fi

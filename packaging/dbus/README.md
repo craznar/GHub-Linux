@@ -1,3 +1,3 @@
 # D-Bus integration
 
-Reserved for the versioned system-bus interface and service policy. Proposed interface: `au.craznar.LinuxLogitechControl1`, subject to an implementation ADR. No D-Bus service or policy is currently implemented.
+System bus interface au.craznar.LinuxLogitechControl1. The XML is exported from the running engineering service. Policy allows only the dedicated account to own the name. Methods independently check caller credentials/session for mutations. Full live-input signals, progress and recording contract remain unfinished.

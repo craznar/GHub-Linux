@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+if [ "$1" = configure ]; then
+    systemd-sysusers /usr/lib/sysusers.d/linux-logitech-control.conf
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload
+        systemctl reload dbus
+        systemctl enable linux-logitech-control.service
+        systemctl restart linux-logitech-control.service
+    fi
+fi

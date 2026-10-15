@@ -1,0 +1,25 @@
+name: Linux build and engineering tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  engineering:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install test tools
+        run: sudo apt-get update && sudo apt-get install -y build-essential dbus-x11 shellcheck
+      - name: Install pinned Rust
+        run: rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
+      - name: Build and unit test
+        run: ./scripts/build.sh
+      - name: Isolated CLI and D-Bus integration
+        run: ./scripts/test-integration.sh release
+      - name: Build engineering package
+        run: ./scripts/package.sh
+      - name: Install and remove on the disposable runner
+        run: sudo ./scripts/test-package.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-logitech-control-engineering
+          path: dist/*.deb

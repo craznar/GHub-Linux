@@ -1,3 +1,3 @@
-# Debian packaging
+# Debian package
 
-Reserved for the native Ubuntu package. No package is available. Implement metadata, dependencies, install paths, upgrade/removal handling and qualification according to specification section 16.
+scripts/package.sh stages the implemented engineering binaries, passive service, optional user unit, D-Bus policy, schemas, man page, documentation and dependency notices. Maintainer scripts register the dedicated service account and passive startup. User configuration is never deleted. No production hardware support is claimed.

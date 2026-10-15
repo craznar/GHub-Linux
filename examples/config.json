@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "revision": 0,
+  "login_activation": false,
+  "devices": [{"model": "g502_hero", "serial": null, "usb_port": null}, {"model": "g815", "serial": null, "usb_port": null}],
+  "selected_profile": "00000000-0000-4000-8000-000000000001",
+  "profiles": [{
+    "id": "00000000-0000-4000-8000-000000000001",
+    "name": "Example (simulation only)",
+    "default_bank": 1,
+    "bindings": [{
+      "control": "g502.back", "secondary": false, "bank": null, "impulse": false,
+      "action": {"type": "macro", "id": "00000000-0000-4000-8000-000000000002", "mode": {"type": "once"}, "retrigger": "ignore"}
+    }]
+  }],
+  "macros": [{
+    "id": "00000000-0000-4000-8000-000000000002",
+    "name": "Ctrl+A example", "interval_ms": 10,
+    "operations": [{"type": "tap", "outputs": [{"kind": "key", "code": 29}, {"kind": "key", "code": 30}], "hold_ms": 30}]
+  }]
+}

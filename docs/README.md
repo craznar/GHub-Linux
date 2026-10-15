@@ -16,3 +16,4 @@
 | [architecture/README.md](architecture/README.md) | Component layout and ADR process |
 | [hardware/G502-HERO.md](hardware/G502-HERO.md) | Mouse hardware evidence |
 | [hardware/G815.md](hardware/G815.md) | Keyboard hardware evidence |
+| [HARDWARE-TESTING.md](HARDWARE-TESTING.md) | Manual inventory/capture workflow and G0 boundaries |

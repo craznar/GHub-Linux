@@ -1,0 +1,11 @@
+Package: linux-logitech-control
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Christopher Burke <github@craznar.com>
+Depends: libc6 (>= 2.39), libgcc-s1, dbus, systemd, udev, kmod
+Description: Linux Logitech Control engineering backend and probe
+ Read-only inventory, validated profiles, offline macro simulation,
+ passive D-Bus backend and opt-in session integration.
+ Physical remapping and hardware writes remain blocked by gate G0.

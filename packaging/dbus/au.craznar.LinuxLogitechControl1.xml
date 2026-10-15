@@ -1,0 +1,75 @@
+
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+ "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="au.craznar.LinuxLogitechControl1">
+    <method name="InterfaceVersion">
+      <arg type="u" direction="out"/>
+    </method>
+    <method name="Status">
+      <arg type="s" direction="out"/>
+    </method>
+    <method name="Devices">
+      <arg type="s" direction="out"/>
+    </method>
+    <method name="ValidateConfiguration">
+      <arg name="json" type="s" direction="in"/>
+      <arg type="s" direction="out"/>
+    </method>
+    <method name="StageConfiguration">
+      <arg name="json" type="s" direction="in"/>
+    </method>
+    <method name="SelectProfile">
+      <arg name="id" type="s" direction="in"/>
+    </method>
+    <method name="SelectBank">
+      <arg name="bank" type="y" direction="in"/>
+    </method>
+    <method name="SetManagement">
+      <arg name="enabled" type="b" direction="in"/>
+    </method>
+    <method name="SetBypass">
+      <arg name="enabled" type="b" direction="in"/>
+    </method>
+    <method name="StartRecording">
+    </method>
+    <method name="StopRecording">
+    </method>
+    <method name="Diagnostics">
+      <arg type="s" direction="out"/>
+    </method>
+  </interface>
+  <interface name="org.freedesktop.DBus.Introspectable">
+    <method name="Introspect">
+      <arg type="s" direction="out"/>
+    </method>
+  </interface>
+  <interface name="org.freedesktop.DBus.Peer">
+    <method name="Ping">
+    </method>
+    <method name="GetMachineId">
+      <arg type="s" direction="out"/>
+    </method>
+  </interface>
+  <interface name="org.freedesktop.DBus.Properties">
+    <method name="Get">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg type="v" direction="out"/>
+    </method>
+    <method name="Set">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg name="value" type="v" direction="in"/>
+    </method>
+    <method name="GetAll">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg type="a{sv}" direction="out"/>
+    </method>
+    <signal name="PropertiesChanged">
+      <arg name="interface_name" type="s"/>
+      <arg name="changed_properties" type="a{sv}"/>
+      <arg name="invalidated_properties" type="as"/>
+    </signal>
+  </interface>
+</node>

@@ -1,3 +1,3 @@
 # Schemas
 
-Reserved for versioned configuration, import/export and IPC/CLI output schemas. No schema is currently implemented. Follow specification sections 9 and 12.
+config.schema.json is generated from the Rust configuration types using llc config schema; build.sh detects drift. Rust validation additionally enforces semantic limits, references and balances. cli-output.schema.json defines the common versioned JSON envelope; individual payloads are documented by llc --help and the corresponding Rust types.
