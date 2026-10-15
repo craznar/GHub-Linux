@@ -1,0 +1,25 @@
+# Rust build output
+/target/
+**/*.rs.bk
+
+# IDE and local environment
+/.idea/
+/.vscode/
+/.env
+/.env.*
+!/.env.example
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Generated packages and reports
+/dist/
+/build/
+/coverage/
+
+# Unsanitized local hardware captures must never be committed
+/local-captures/
+
+# Cargo.lock is intentionally tracked when the workspace is initialized.
