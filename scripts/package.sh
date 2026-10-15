@@ -3,6 +3,7 @@ set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 target=${CARGO_TARGET_DIR:-$root/target}
 stage=$(mktemp -d)
+chmod 755 "$stage"
 trap 'rm -rf -- "$stage"' EXIT
 version=0.1.0
 arch=$(dpkg --print-architecture)
